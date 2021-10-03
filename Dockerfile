@@ -5,6 +5,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx
+FROM nginx:alpine
 EXPOSE 80
+RUN apk add --update nodejs npm
 COPY --from=builder /app/build /usr/share/nginx/html
